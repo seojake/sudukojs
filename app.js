@@ -21,23 +21,36 @@ function create_board() {
     var board = [];
 
     // Check the column and row if that number had been used
-    var is_valid = function (n, row, column) {
+    var is_valid = function (n, x, y) {
         // Check the column
-        // if (board[column].includes(n)) {
+        for(i = 0; i < board_size; i++){
+            if(board[y][i] !== n){
+                return false;
+            }
+        }
+        // return false;
+        // if(in_row.includes(n)){
         //     return false;
         // }
 
         // Check the row
-        if (board[row].includes(n)) {
+        if (board[x].includes(n)) {
             return false;
         }
 
         return true;
     }
 
-    // Start to create the board
-    for (row = 0; row < board_size; row++) {
+    // Crate a blank board
+    for(row = 0; row < board_size; row++){
         board.push([]);
+        for(column = 0; column < board_size; column++){
+            board[row].push(0);
+        }
+    }
+
+    // Fill the board with a completed solution
+    for (row = 0; row < board_size; row++) {
         for (column = 0; column < board_size; column++) {
             while (true) {
                 var number = Math.ceil((Math.random() * 9));
@@ -49,9 +62,5 @@ function create_board() {
         }
     }
 
-    console.log(board);
+    console.table(board);
 }
-
-// function run_checks(column, row) {
-
-// }
